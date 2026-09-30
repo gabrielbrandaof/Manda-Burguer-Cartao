@@ -45,7 +45,7 @@ main{
 
 /* ---- Espaço da logo (já está na imagem de fundo) ---- */
 
-.logo-space{ height: 39dvh; min-height: 230px; flex-shrink: 0; }
+.logo-space{ height: 24dvh; min-height: 150px; flex-shrink: 0; }
 
 .sr-only{
   position: absolute; width: 1px; height: 1px; overflow: hidden;
@@ -54,8 +54,15 @@ main{
 
 /* ---- Botão Cardápio Digital ---- */
 
+.chamada-image{
+  display: block;
+  width: min(94%, 420px);
+  height: auto;
+  margin: 55px 0 0;
+}
+
 .cardapio{
-  margin-top: 6px;
+  margin-top: -8px;
   width: min(90%, 410px);
   display: block;
   text-decoration: none;
@@ -87,7 +94,7 @@ main{
 /* ---- Ícones ---- */
 
 .icons{
-  margin: 14px 0 calc(32px + env(safe-area-inset-bottom, 0px));
+  margin: 2px 0 calc(32px + env(safe-area-inset-bottom, 0px));
   width: 100%;
   padding: 0 14px;
   display: flex;
