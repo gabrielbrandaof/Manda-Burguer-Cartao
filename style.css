@@ -1,0 +1,136 @@
+:root{
+  --red: #E8460B;
+  --red-dark: #A50E14;
+  --red-deep: #6E0509;
+  --yellow: #FFC61A;
+  --yellow-dark: #E0A400;
+  --white: #fff;
+}
+
+*{ box-sizing: border-box; }
+
+html{
+  background: #0b0b0b;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body{
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  color: var(--white);
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #0b0b0b;
+}
+
+main{
+  width: 100%;
+  max-width: 460px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: env(safe-area-inset-top, 0px) 0 0;
+  background: #0b0b0b url('img/fundo.jpg') center top / cover no-repeat;
+  animation: enter .6s ease both;
+}
+
+@keyframes enter{
+  from{ opacity: 0; transform: translateY(10px); }
+  to{ opacity: 1; transform: none; }
+}
+
+/* ---- Espaço da logo (já está na imagem de fundo) ---- */
+
+.logo-space{ height: 39dvh; min-height: 230px; flex-shrink: 0; }
+
+.sr-only{
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---- Botão Cardápio Digital ---- */
+
+.cardapio{
+  margin-top: 6px;
+  width: min(90%, 410px);
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.button-image{
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.cardapio-image{
+  width: 100%;
+  animation: pulse 2.4s ease-in-out infinite;
+  transition: transform .15s ease;
+}
+
+@keyframes pulse{
+  0%, 100%{ transform: scale(1); }
+  50%{ transform: scale(1.03); }
+}
+
+.cardapio:active .cardapio-image{
+  animation: none;
+  transform: translateY(4px);
+}
+
+/* ---- Ícones ---- */
+
+.icons{
+  margin: 14px 0 calc(32px + env(safe-area-inset-bottom, 0px));
+  width: 100%;
+  padding: 0 14px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(10px, 3.5vw, 18px);
+}
+
+.ico{
+  display: block;
+  flex: 0 1 clamp(92px, 28vw, 112px);
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ico-image{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  transition: transform .15s ease;
+}
+
+@media (hover: hover){
+  .ico:hover .ico-image{
+    transform: translateY(-4px) rotate(-2deg);
+  }
+  .cardapio:hover .cardapio-image{ animation-play-state: paused; transform: scale(1.04); }
+}
+
+.ico:active .ico-image{
+  transform: translateY(4px);
+}
+
+.ico:focus-visible,
+.cardapio:focus-visible{
+  outline: 3px solid #fff;
+  outline-offset: 5px;
+  border-radius: 20px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  main, .cardapio-image{ animation: none; }
+  .ico-image, .cardapio-image{ transition: none; }
+}
