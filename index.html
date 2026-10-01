@@ -4,43 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0b0b0b">
-<meta name="description" content="Manda Burger: cardápio digital, WhatsApp, localização e sistema de pedidos.">
+<meta name="description" content="Manda Burger: cardápio digital, WhatsApp, localização, produtos e Instagram.">
 <title>Manda Burger | Cardápio Digital</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700&family=Yellowtail&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<main>
+<main class="tela">
 
-  <!-- A logo já faz parte da imagem de fundo (img/fundo.jpg) -->
+  <!-- Fundo (logo, coroas e "Toque nos ícones" fazem parte da imagem) -->
+  <img class="fundo" src="img/fundo.jpg" alt="" aria-hidden="true">
   <h1 class="sr-only">Manda Burger</h1>
-  <div class="logo-space" aria-hidden="true"></div>
 
-  <div class="buttons-group">
+  <div class="botoes">
+
     <a class="cardapio" href="https://instadelivery.com.br/mandaburguer" target="_blank" rel="noopener">
-      <img class="button-image cardapio-image" src="img/cardapio.png" alt="Cardápio digital">
+      <img src="img/cardapio.png" alt="Cardápio digital">
     </a>
 
-    <!-- Ícones -->
-    <nav class="icons" aria-label="Contatos">
+    <nav class="icones" aria-label="Contatos">
 
       <a class="ico" href="https://api.whatsapp.com/send?phone=559886061442&text=Ol%C3%A1%2C%20quero%20fazer%20um%20pedido!" target="_blank" rel="noopener">
-        <img class="button-image ico-image" src="img/whatsapp.png" alt="WhatsApp">
+        <img src="img/whatsapp.png" alt="WhatsApp">
       </a>
 
       <a class="ico" href="https://maps.google.com/?q=Manda+Burger" target="_blank" rel="noopener">
-        <img class="button-image ico-image" src="img/localizacao.png" alt="Localização">
+        <img src="img/localizacao.png" alt="Localização">
       </a>
 
       <a class="ico" href="https://cardapiomandaburgerslz.vercel.app/" target="_blank" rel="noopener">
-        <img class="button-image ico-image" src="img/produtos.png" alt="Produtos">
+        <img src="img/produtos.png" alt="Produtos">
       </a>
 
       <a class="ico ico-instagram" href="https://www.instagram.com/mandaburgerslz/" target="_blank" rel="noopener">
-        <img class="button-image ico-image" src="img/instagram.png" alt="Instagram">
+        <img src="img/instagram.png" alt="Instagram">
       </a>
 
     </nav>

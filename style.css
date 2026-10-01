@@ -1,11 +1,5 @@
 :root{
-  --red: #E8460B;
-  --red-dark: #A50E14;
-  --red-deep: #6E0509;
-  --yellow: #FFC61A;
-  --yellow-dark: #E0A400;
-  --white: #fff;
-  --buttons-offset-y: 80px;
+  --largura: min(100vw, 100dvh * 9 / 16, 520px);
 }
 
 *{ box-sizing: border-box; }
@@ -21,41 +15,8 @@ body{
   min-height: 100dvh;
   display: flex;
   justify-content: center;
-  color: var(--white);
-  font-family: 'Barlow Condensed', system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  align-items: center;
   background: #0b0b0b;
-}
-
-main{
-  width: 100%;
-  max-width: 460px;
-  aspect-ratio: 559 / 1000;
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: env(safe-area-inset-top, 0px) 0 0;
-  background: #0b0b0b url('img/fundo.jpg') center top / 100% auto no-repeat;
-  animation: enter .6s ease both;
-}
-
-@keyframes enter{
-  from{ opacity: 0; transform: translateY(10px); }
-  to{ opacity: 1; transform: none; }
-}
-
-/* ---- Espaço da logo (já está na imagem de fundo) ---- */
-
-.logo-space{ height: 24dvh; min-height: 150px; flex-shrink: 0; }
-
-.buttons-group{
-  width: 100%;
-  margin-top: var(--buttons-offset-y);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: .82;
 }
 
 .sr-only{
@@ -63,91 +24,143 @@ main{
   clip: rect(0 0 0 0); white-space: nowrap;
 }
 
-/* ---- Botão Cardápio Digital ---- */
+/* ---------- Tela (proporção fixa 9:16, igual ao fundo) ---------- */
 
-.cardapio{
-  margin-top: -8px;
-  width: min(90%, 410px);
-  display: block;
-  text-decoration: none;
-  color: inherit;
+.tela{
+  position: relative;
+  width: var(--largura);
+  aspect-ratio: 559 / 1000;
+  overflow: hidden;
+  background: #0b0b0b;
+  animation: entrar .6s ease both;
 }
 
-.button-image{
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
+@keyframes entrar{ from{ opacity: 0; } to{ opacity: 1; } }
 
-.cardapio-image{
+.fundo{
+  position: absolute;
+  inset: 0;
   width: 100%;
-  animation: pulse 2.4s ease-in-out infinite;
-  transition: transform .15s ease;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-@keyframes pulse{
+/* ---------- Bloco dos botões (tudo alinhado em uma coluna central) ---------- */
+
+.botoes{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 39.5%;                 /* AJUSTE AQUI para subir/descer todos os botões */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.botoes img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform .15s ease, filter .15s ease;
+}
+
+a{ text-decoration: none; display: block; }
+
+/* Cardápio: centralizado */
+.cardapio{
+  width: 84%;
+  aspect-ratio: 841 / 211;
+  transform: scale(1.2);
+}
+
+.cardapio img{ animation: pulsar 2.4s ease-in-out infinite; }
+
+@keyframes pulsar{
   0%, 100%{ transform: scale(1); }
   50%{ transform: scale(1.03); }
 }
 
-.cardapio:active .cardapio-image{
-  animation: none;
-  transform: translateY(4px);
-}
-
-/* ---- Ícones ---- */
-
-.icons{
-  margin: 2px 0 calc(32px + env(safe-area-inset-bottom, 0px));
-  width: 100%;
-  max-width: 430px;
-  padding: 0 6px;
+/* Ícones: grade de 3 colunas, todos do mesmo tamanho */
+.icones{
+  --escala-icones: 1.25;
+  width: 90%;
+  margin-top: 2.5%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 3%;
+  row-gap: 0;
   justify-items: center;
-  gap: clamp(6px, 2vw, 10px);
 }
 
 .ico{
-  display: block;
-  width: min(100%, clamp(104px, 32vw, 132px));
-  min-width: 0;
-  text-decoration: none;
-  color: inherit;
+  width: 100%;
+  aspect-ratio: 1.1 / 1;      /* mesma caixa para os 4 ícones */
 }
 
+.ico img{ transform: scale(var(--escala-icones)); }
+
+.icones > .ico:first-child img,
+.ico-instagram img{
+  width: 80%;
+  height: 80%;
+}
+
+.icones > .ico:first-child,
+.ico-instagram{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icones > .ico:first-child{
+  position: relative;
+  top: 4px;
+}
+
+.icones > .ico:nth-child(2),
+.icones > .ico:nth-child(3){
+  position: relative;
+  top: -4px;
+}
+
+/* Instagram: centralizado na segunda linha */
 .ico-instagram{
   grid-column: 2;
-  transform: translateY(-12px);
+  margin-top: 4%;
+  position: relative;
+  top: -4px;
+  left: 4px;
 }
 
-.ico-image{
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  transition: transform .15s ease;
-}
+/* ---------- Interações ---------- */
 
 @media (hover: hover){
-  .ico:hover .ico-image{
-    transform: translateY(-4px) rotate(-2deg);
+  .ico:hover img{
+    transform: translateY(-4px) rotate(-2deg) scale(calc(var(--escala-icones) + 0.05));
+    filter: drop-shadow(0 0 12px rgba(255,106,26,.8));
   }
-  .cardapio:hover .cardapio-image{ animation-play-state: paused; transform: scale(1.04); }
+  .cardapio:hover img{
+    animation-play-state: paused;
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 14px rgba(255,106,26,.8));
+  }
 }
 
-.ico:active .ico-image{
-  transform: translateY(4px);
-}
+.ico:active img{ transform: translateY(3px) scale(calc(var(--escala-icones) - 0.12)); }
+.cardapio:active img{ animation: none; transform: translateY(3px) scale(.98); }
 
-.ico:focus-visible,
-.cardapio:focus-visible{
+a:focus-visible{
   outline: 3px solid #fff;
-  outline-offset: 5px;
-  border-radius: 20px;
+  outline-offset: 4px;
+  border-radius: 16px;
 }
 
 @media (prefers-reduced-motion: reduce){
-  main, .cardapio-image{ animation: none; }
-  .ico-image, .cardapio-image{ transition: none; }
+  .tela, .cardapio img{ animation: none; }
+  .botoes img{ transition: none; }
 }
