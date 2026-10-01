@@ -30,12 +30,13 @@ body{
 main{
   width: 100%;
   max-width: 460px;
+  aspect-ratio: 559 / 1000;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: env(safe-area-inset-top, 0px) 0 0;
-  background: #0b0b0b url('img/fundo.jpg') center top / cover no-repeat;
+  background: #0b0b0b url('img/fundo.jpg') center top / 100% auto no-repeat;
   animation: enter .6s ease both;
 }
 
@@ -50,11 +51,11 @@ main{
 
 .buttons-group{
   width: 100%;
+  margin-top: var(--buttons-offset-y);
   display: flex;
   flex-direction: column;
   align-items: center;
   opacity: .82;
-  transform: translateY(var(--buttons-offset-y));
 }
 
 .sr-only{
