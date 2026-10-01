@@ -5,7 +5,7 @@
   --yellow: #FFC61A;
   --yellow-dark: #E0A400;
   --white: #fff;
-  --buttons-offset-y: 110px;
+  --buttons-offset-y: 80px;
 }
 
 *{ box-sizing: border-box; }
